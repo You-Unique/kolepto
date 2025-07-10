@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kolepto/screens/shared_utils/extension.dart';
 import 'package:kolepto/screens/shared_utils/hovering_container.dart';
+import 'package:kolepto/screens/signin/signin_screen.dart';
 import 'package:kolepto/screens/signup/signup_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -33,7 +34,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     const Spacer(),
                     // Enter button starts here
-                    const HoveringContainer(
+                    HoveringContainer(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const SigninScreen();
+                            },
+                          ),
+                        );
+                      },
                       width: 100,
                       height: 40,
                       text: 'Login',
@@ -110,7 +120,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             textColor: Colors.green[900],
                             iconColor: Colors.green[900],
                             onTap: () {
-                              // Add your get started logic here
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return const SignupScreen();
+                                  },
+                                ),
+                              );
                             },
                           ),
                           20.hSpace,
@@ -365,7 +381,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             textColor: Colors.green[900],
                             iconColor: Colors.green[900],
                             onTap: () {
-                              // Add your get started logic here
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return const SignupScreen();
+                                  },
+                                ),
+                              );
                             },
                           ),
                         ],

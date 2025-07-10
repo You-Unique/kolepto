@@ -2,6 +2,7 @@
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:kolepto/screens/home/home_screen.dart';
 import 'package:kolepto/screens/shared_utils/button.dart';
 import 'package:kolepto/screens/shared_utils/extension.dart';
 import 'package:kolepto/screens/shared_utils/hovering_container.dart';
@@ -63,7 +64,16 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                       const Spacer(),
                       // Enter button starts here
-                      const HoveringContainer(
+                      HoveringContainer(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return const SigninScreen();
+                              },
+                            ),
+                          );
+                        },
                         width: 100,
                         height: 40,
                         text: 'Login',
@@ -84,7 +94,13 @@ class _SignupScreenState extends State<SignupScreen> {
                         textColor: Colors.white,
                         iconColor: Colors.white,
                         onTap: () {
-                          Navigator.of(context).pop();
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return const HomeScreen();
+                              },
+                            ),
+                          );
                         },
                       ),
                     ],
@@ -320,7 +336,13 @@ class _SignupScreenState extends State<SignupScreen> {
                                     text: ' Sign In',
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () {
-                                        Navigator.of(context).pop();
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                            builder: (context) {
+                                              return const SigninScreen();
+                                            },
+                                          ),
+                                        );
                                       },
                                     style: const TextStyle(
                                       fontWeight: FontWeight.bold,

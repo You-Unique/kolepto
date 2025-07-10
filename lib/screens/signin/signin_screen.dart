@@ -6,6 +6,7 @@ import 'package:kolepto/screens/shared_utils/extension.dart';
 import 'package:kolepto/screens/shared_utils/hovering_container.dart';
 import 'package:kolepto/screens/shared_utils/input_field.dart';
 import 'package:kolepto/screens/shared_utils/primary_colour.dart';
+import 'package:kolepto/screens/signup/signup_screen.dart';
 
 class SigninScreen extends StatefulWidget {
   const SigninScreen({super.key});
@@ -222,7 +223,13 @@ class _SigninScreenState extends State<SigninScreen> {
                                   text: ' Sign Up',
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
-                                      Navigator.of(context).pop();
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) {
+                                            return const SignupScreen();
+                                          },
+                                        ),
+                                      );
                                     },
                                   style: const TextStyle(
                                     fontWeight: FontWeight.bold,
