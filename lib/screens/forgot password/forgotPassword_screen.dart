@@ -1,24 +1,21 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:kolepto/screens/dashboard/generator_page.dart';
-import 'package:kolepto/screens/forgot%20password/forgotPassword_screen.dart';
-import 'package:kolepto/screens/google/google_sign_in_button.dart';
-import 'package:kolepto/screens/home/home_screen.dart';
 import 'package:kolepto/screens/shared_utils/button.dart';
 import 'package:kolepto/screens/shared_utils/extension.dart';
 import 'package:kolepto/screens/shared_utils/hovering_container.dart';
 import 'package:kolepto/screens/shared_utils/input_field.dart';
 import 'package:kolepto/screens/shared_utils/primary_colour.dart';
+import 'package:kolepto/screens/signin/signin_screen.dart';
 import 'package:kolepto/screens/signup/signup_screen.dart';
 
-class SigninScreen extends StatefulWidget {
-  const SigninScreen({super.key});
+class ForgotpasswordScreen extends StatefulWidget {
+  const ForgotpasswordScreen({super.key});
 
   @override
-  State<SigninScreen> createState() => _SigninScreenState();
+  State<ForgotpasswordScreen> createState() => _ForgotpasswordScreenState();
 }
 
-class _SigninScreenState extends State<SigninScreen> {
+class _ForgotpasswordScreenState extends State<ForgotpasswordScreen> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
 
@@ -52,7 +49,25 @@ class _SigninScreenState extends State<SigninScreen> {
                       width: 150,
                     ),
                     const Spacer(),
-                    // Enter button starts here
+                    HoveringContainer(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const SigninScreen();
+                            },
+                          ),
+                        );
+                      },
+                      width: 100,
+                      height: 40,
+                      text: 'Login',
+                      icon: Icons
+                          .login, // Changed to a more explicit enter/sign-in icon
+                      entry_color: Colors.orangeAccent,
+                      exit_color: Colors.transparent,
+                    ),
+                    10.hSpace,
                     HoveringContainer(
                       onTap: () {
                         Navigator.of(context).push(
@@ -68,29 +83,10 @@ class _SigninScreenState extends State<SigninScreen> {
                       text: 'Sign Up',
                       icon: Icons
                           .app_registration, // Changed to a more explicit enter/sign-in icon
-                      entry_color: Colors.orangeAccent,
-                      exit_color: Colors.transparent,
-                    ),
-                    10.hSpace,
-                    HoveringContainer(
-                      width: 100,
-                      height: 40,
-                      text: 'Home',
-                      icon:
-                          Icons.home, // Changed to a more explicit sign-up icon
                       entry_color: Colors.green[700],
                       exit_color: Colors.green[900],
                       textColor: Colors.white,
                       iconColor: Colors.white,
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return const HomeScreen();
-                            },
-                          ),
-                        );
-                      }, // No act
                     ),
                   ],
                 ),
@@ -104,7 +100,7 @@ class _SigninScreenState extends State<SigninScreen> {
               ),
               20.vSpace,
               const Text(
-                'Welcome back',
+                'Reset Your Password',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 32,
@@ -112,7 +108,7 @@ class _SigninScreenState extends State<SigninScreen> {
               ),
               5.vSpace,
               const Text(
-                'Sign in to your account to continue',
+                'Enter your email to receive a password reset link \nand follow the instructions to reset your password.',
                 style: TextStyle(
                   fontWeight: FontWeight.normal,
                   fontSize: 14,
@@ -122,8 +118,7 @@ class _SigninScreenState extends State<SigninScreen> {
               20.vSpace,
               Container(
                 width: mediaQuery.size.width * 0.4,
-                height: 500,
-                // No height specified, so it will size to fit its child
+                height: 280,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border.all(
@@ -172,85 +167,19 @@ class _SigninScreenState extends State<SigninScreen> {
                           ),
                         ),
                         5.vSpace,
-                        20.vSpace,
-                        Row(
-                          children: [
-                            const Text(
-                              'Passsword',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
-                              ),
-                            ),
-                            const Spacer(),
-                            Text.rich(
-                              TextSpan(
-                                text: 'Forgot Password?',
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) {
-                                          return const ForgotpasswordScreen();
-                                        },
-                                      ),
-                                    );
-                                  },
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 12,
-                                  fontStyle: FontStyle.italic,
-                                  color: Colors.green,
-                                ),
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
-                        MouseRegion(
-                          onEnter: (_) =>
-                              setState(() => bordercolor_password = true),
-                          onExit: (_) =>
-                              setState(() => bordercolor_password = false),
-                          child: InputField(
-                            textEditingController: _password,
-                            hint: '********',
-                            bordercolor: bordercolor_password
-                                ? Colors.green
-                                : Colors.transparent,
-                            obscure: passwordobscure,
-                            suffixWidget: GestureDetector(
-                              child: passwordobscure == true
-                                  ? const Icon(
-                                      Icons.visibility_off,
-                                      size: 14,
-                                    )
-                                  : const Icon(
-                                      Icons.visibility,
-                                      size: 14,
-                                    ),
-                              onTap: () => setState(
-                                () {
-                                  passwordobscure = !passwordobscure;
-                                },
-                              ),
-                            ),
-                          ),
-                        ),
                         40.vSpace,
                         MouseRegion(
                           onEnter: (_) => setState(() => isHovering = true),
                           onExit: (_) => setState(() => isHovering = false),
                           child: Button(
-                            buttonName: 'Sign In',
+                            buttonName: 'Send Reset Link',
                             buttonColor: isHovering
                                 ? Colors.green
                                 : KoleptoColor.primaryColor,
                             onTap: () {
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
-                                  builder: (context) => const GeneratorPage(),
-                                ),
+                                    builder: (context) => const SigninScreen()),
                               );
                             },
                           ),
@@ -259,20 +188,20 @@ class _SigninScreenState extends State<SigninScreen> {
                         Center(
                           child: Text.rich(
                             TextSpan(
-                              text: 'Don\'t have an account? ',
+                              text: 'Remember Password? ',
                               style: const TextStyle(
                                 fontWeight: FontWeight.normal,
                                 fontSize: 16,
                               ),
                               children: [
                                 TextSpan(
-                                  text: ' Sign Up',
+                                  text: ' Back to Login',
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
                                           builder: (context) {
-                                            return const SignupScreen();
+                                            return const SigninScreen();
                                           },
                                         ),
                                       );
@@ -287,40 +216,6 @@ class _SigninScreenState extends State<SigninScreen> {
                             ),
                             textAlign: TextAlign.center,
                           ),
-                        ),
-                        10.vSpace,
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Divider(
-                                thickness: 1.5,
-                                color: Colors.grey[200],
-                                height: 40,
-                                endIndent: 10,
-                              ),
-                            ),
-                            Text(
-                              'or',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey[600],
-                              ),
-                            ),
-                            Expanded(
-                              child: Divider(
-                                thickness: 1.5,
-                                color: Colors.grey[200],
-                                height: 40,
-                                indent: 10,
-                              ),
-                            ),
-                          ],
-                        ),
-                        10.vSpace,
-                        GoogleSignInButton(
-                          onTap: () {
-                            // Handle Google Sign In
-                          },
                         ),
                       ],
                     ),

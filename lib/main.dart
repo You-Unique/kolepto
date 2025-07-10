@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kolepto/screens/dashboard/generator_page.dart';
 import 'package:kolepto/screens/home/home_screen.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Kolepto',
       theme: ThemeData(),
-      home: const HomeScreen(),
+      home: const GeneratorPage(),
     );
   }
 }

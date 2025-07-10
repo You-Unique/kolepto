@@ -20,23 +20,24 @@ class HoveringContainer extends StatefulWidget {
   // final Gradient? gradient;
   // final DecorationImage? image;
 
-  const HoveringContainer(
-      {required this.width,
-      required this.height,
-      required this.text,
-      this.entry_color,
-      this.exit_color,
-      this.border,
-      this.borderRadius,
-      this.fontSize,
-      this.icon,
-      this.onTap,
-      // this.gradient,
-      // this.image,
-      this.iconColor,
-      this.textColor,
-      this.iconSize,
-      super.key});
+  const HoveringContainer({
+    required this.width,
+    required this.height,
+    required this.text,
+    this.entry_color,
+    this.exit_color,
+    this.border,
+    this.borderRadius,
+    this.fontSize,
+    this.icon,
+    this.onTap,
+    // this.gradient,
+    // this.image,
+    this.iconColor,
+    this.textColor,
+    this.iconSize,
+    super.key,
+  });
 
   @override
   State<HoveringContainer> createState() => _HoveringContainerState();
