@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:kolepto/screens/dashboard/generator_page.dart';
-import 'package:kolepto/screens/forgot%20password/forgotPassword_screen.dart';
+import 'package:kolepto/screens/main%20screens/generator_page.dart';
+import 'package:kolepto/screens/forgot%20password/forgot_password_screen.dart';
 import 'package:kolepto/screens/google/google_sign_in_button.dart';
 import 'package:kolepto/screens/home/home_screen.dart';
 import 'package:kolepto/screens/shared_utils/button.dart';
@@ -23,8 +23,8 @@ class _SigninScreenState extends State<SigninScreen> {
   final TextEditingController _password = TextEditingController();
 
   bool passwordobscure = false;
-  bool bordercolor_email = false;
-  bool bordercolor_password = false;
+  bool borderColorEmail = false;
+  bool borderColorPassword = false;
   bool isHovering = false;
 
   @override
@@ -160,13 +160,13 @@ class _SigninScreenState extends State<SigninScreen> {
                         5.vSpace,
                         MouseRegion(
                           onEnter: (_) =>
-                              setState(() => bordercolor_email = true),
+                              setState(() => borderColorEmail = true),
                           onExit: (_) =>
-                              setState(() => bordercolor_email = false),
+                              setState(() => borderColorEmail = false),
                           child: InputField(
                             textEditingController: _email,
                             hint: 'name@example.com',
-                            bordercolor: bordercolor_email
+                            bordercolor: borderColorEmail
                                 ? Colors.green
                                 : Colors.transparent,
                           ),
@@ -209,13 +209,13 @@ class _SigninScreenState extends State<SigninScreen> {
                         ),
                         MouseRegion(
                           onEnter: (_) =>
-                              setState(() => bordercolor_password = true),
+                              setState(() => borderColorPassword = true),
                           onExit: (_) =>
-                              setState(() => bordercolor_password = false),
+                              setState(() => borderColorPassword = false),
                           child: InputField(
                             textEditingController: _password,
                             hint: '********',
-                            bordercolor: bordercolor_password
+                            bordercolor: borderColorPassword
                                 ? Colors.green
                                 : Colors.transparent,
                             obscure: passwordobscure,
@@ -249,7 +249,9 @@ class _SigninScreenState extends State<SigninScreen> {
                             onTap: () {
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
-                                  builder: (context) => const GeneratorPage(),
+                                  builder: (context) => const GeneratorPage(
+                                    selectedIndex: 0,
+                                  ),
                                 ),
                               );
                             },

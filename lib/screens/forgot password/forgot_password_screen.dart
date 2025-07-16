@@ -20,8 +20,8 @@ class _ForgotpasswordScreenState extends State<ForgotpasswordScreen> {
   final TextEditingController _password = TextEditingController();
 
   bool passwordobscure = false;
-  bool bordercolor_email = false;
-  bool bordercolor_password = false;
+  bool borderColorEmail = false;
+  bool borderColorPassword = false;
   bool isHovering = false;
 
   @override
@@ -155,13 +155,13 @@ class _ForgotpasswordScreenState extends State<ForgotpasswordScreen> {
                         5.vSpace,
                         MouseRegion(
                           onEnter: (_) =>
-                              setState(() => bordercolor_email = true),
+                              setState(() => borderColorEmail = true),
                           onExit: (_) =>
-                              setState(() => bordercolor_email = false),
+                              setState(() => borderColorEmail = false),
                           child: InputField(
                             textEditingController: _email,
                             hint: 'name@example.com',
-                            bordercolor: bordercolor_email
+                            bordercolor: borderColorEmail
                                 ? Colors.green
                                 : Colors.transparent,
                           ),

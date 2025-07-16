@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:kolepto/screens/dashboard/collections_screen.dart';
-import 'package:kolepto/screens/dashboard/createcolections_screen.dart';
-import 'package:kolepto/screens/dashboard/dashboard._screen.dart';
-import 'package:kolepto/screens/forgot%20password/forgotPassword_screen.dart';
+import 'package:kolepto/provider/navigation_state.dart';
+import 'package:kolepto/screens/main%20screens/collections_screen.dart';
+import 'package:kolepto/screens/main%20screens/createcolections_screen.dart';
+import 'package:kolepto/screens/main%20screens/dashboard._screen.dart';
 import 'package:kolepto/screens/home/home_screen.dart';
+import 'package:kolepto/screens/main%20screens/new_screen.dart';
+import 'package:kolepto/screens/main%20screens/profile_screen.dart';
+import 'package:kolepto/screens/main%20screens/settings_screen.dart';
+import 'package:kolepto/screens/main%20screens/walletoverview_screen.dart';
 import 'package:kolepto/screens/shared_utils/extension.dart';
-import 'package:kolepto/screens/signin/signin_screen.dart';
+import 'package:provider/provider.dart';
 
 class GeneratorPage extends StatefulWidget {
-  const GeneratorPage({super.key});
+  const GeneratorPage({
+    super.key,
+    required int selectedIndex,
+  });
 
   @override
-  State<GeneratorPage> createState() => _DashboardScreenState();
+  State<GeneratorPage> createState() => _GeneratorPageState();
 }
 
-class _DashboardScreenState extends State<GeneratorPage> {
-  int selectedIndex = 0;
+class _GeneratorPageState extends State<GeneratorPage> {
+  // int selectedIndex = 0;
   bool dashboardContainer = false;
   bool collectionsContainer = false;
   bool createcollectionContainer = false;
@@ -28,13 +35,15 @@ class _DashboardScreenState extends State<GeneratorPage> {
     const DashboardScreen(),
     const CollectionsScreen(),
     const CreatecolectionsScreen(),
-    const ForgotpasswordScreen(),
-    const HomeScreen(),
-    const SigninScreen(),
+    const WalletoverviewScreen(),
+    const ProfileScreen(),
+    const SettingsScreen(),
+    const NewScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
+    final navState = Provider.of<NavigationState>(context, listen: true);
     return Scaffold(
       body: Row(
         children: [
@@ -61,14 +70,14 @@ class _DashboardScreenState extends State<GeneratorPage> {
                 ),
                 indicatorColor: Colors.white,
                 leading: Padding(
-                  padding: EdgeInsets.only(right: 100),
+                  padding: const EdgeInsets.only(right: 100),
                   child: Image.asset(
                     'kolepto'.toPNG(), // or your logo/image path
                     height: 40,
                   ),
                 ),
                 trailing: Padding(
-                  padding: EdgeInsets.only(left: 0, top: 180),
+                  padding: const EdgeInsets.only(left: 0, top: 180),
                   child: Column(
                     children: [
                       MouseRegion(
@@ -384,13 +393,9 @@ class _DashboardScreenState extends State<GeneratorPage> {
                     ),
                   ),
                 ],
-                selectedIndex: selectedIndex,
-                onDestinationSelected: (value) {
-                  setState(
-                    () {
-                      selectedIndex = value;
-                    },
-                  );
+                selectedIndex: navState.selectedIndex,
+                onDestinationSelected: (int index) {
+                  navState.setIndex(index);
                 },
               ),
             ),
@@ -398,7 +403,7 @@ class _DashboardScreenState extends State<GeneratorPage> {
           Expanded(
             child: Container(
               color: Theme.of(context).colorScheme.primaryContainer,
-              child: screens[selectedIndex],
+              child: screens[navState.selectedIndex],
             ),
           ),
         ],

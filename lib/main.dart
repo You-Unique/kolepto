@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:kolepto/screens/dashboard/generator_page.dart';
-import 'package:kolepto/screens/home/home_screen.dart';
+import 'package:kolepto/provider/navigation_state.dart';
+import 'package:kolepto/screens/main%20screens/generator_page.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => NavigationState(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -15,7 +21,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Kolepto',
       theme: ThemeData(),
-      home: const GeneratorPage(),
+      home: const GeneratorPage(
+        selectedIndex: 0,
+      ),
     );
   }
 }

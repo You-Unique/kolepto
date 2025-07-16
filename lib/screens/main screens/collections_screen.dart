@@ -79,7 +79,7 @@ class _CollectionsScreenState extends State<CollectionsScreen> {
                   children: [
                     const Text(
                       'You don\'t have any collections yet',
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 14,
                         color: Colors.grey,
