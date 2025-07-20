@@ -10,6 +10,8 @@ class InputField extends StatelessWidget {
   final Color? hintcolor;
   final Color? labelcolor;
   final Color? bordercolor;
+  final bool readOnly;
+  final double? hintsize;
 
   const InputField({
     super.key,
@@ -22,11 +24,14 @@ class InputField extends StatelessWidget {
     this.hintcolor,
     this.labelcolor,
     this.bordercolor,
+    this.readOnly = false,
+    this.hintsize = 12,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      readOnly: readOnly,
       controller: textEditingController,
       obscureText: obscure,
       decoration: InputDecoration(
@@ -39,7 +44,7 @@ class InputField extends StatelessWidget {
         hintText: hint,
         hintStyle: TextStyle(
           fontWeight: FontWeight.w700,
-          fontSize: 12,
+          fontSize: hintsize,
           color: hintcolor,
         ),
         filled: true,

@@ -4,7 +4,6 @@ import 'package:kolepto/screens/main%20screens/collections_screen.dart';
 import 'package:kolepto/screens/main%20screens/createcolections_screen.dart';
 import 'package:kolepto/screens/main%20screens/dashboard._screen.dart';
 import 'package:kolepto/screens/home/home_screen.dart';
-import 'package:kolepto/screens/main%20screens/new_screen.dart';
 import 'package:kolepto/screens/main%20screens/profile_screen.dart';
 import 'package:kolepto/screens/main%20screens/settings_screen.dart';
 import 'package:kolepto/screens/main%20screens/walletoverview_screen.dart';
@@ -38,7 +37,6 @@ class _GeneratorPageState extends State<GeneratorPage> {
     const WalletoverviewScreen(),
     const ProfileScreen(),
     const SettingsScreen(),
-    const NewScreen(),
   ];
 
   @override

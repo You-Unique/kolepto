@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kolepto/screens/main%20screens/generator_page.dart';
+import 'package:kolepto/screens/change%20password/changepassword_screen.dart';
 import 'package:kolepto/screens/shared_utils/extension.dart';
 import 'package:provider/provider.dart';
 import 'package:kolepto/provider/navigation_state.dart';
@@ -19,14 +19,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Settings',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
+            color: Colors.green[900],
           ),
         ),
         elevation: 0,
+        automaticallyImplyLeading: false,
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -50,7 +52,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             trailing: const Icon(Icons.arrow_forward_ios, size: 16),
             onTap: () {
-              // Navigate to profile edit screen
+              final navState =
+                  Provider.of<NavigationState>(context, listen: false);
+              navState.setIndex(4);
             },
           ),
           ListTile(
@@ -58,12 +62,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
             title: const Text('Change Password'),
             trailing: const Icon(Icons.arrow_forward_ios, size: 16),
             onTap: () {
-              final navState =
-                  Provider.of<NavigationState>(context, listen: false);
-              navState.setIndex(6); // This will update the selected index
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return ChangepasswordScreen();
+                  },
+                ),
+              );
             },
           ),
-          const Divider(height: 32),
+          32.vSpace,
           const Text(
             'Notifications',
             style: TextStyle(
@@ -71,7 +79,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               fontSize: 18,
             ),
           ),
-          const SizedBox(height: 10),
+          10.vSpace,
           SwitchListTile(
             secondary: const Icon(Icons.notifications),
             title: const Text('Enable Notifications'),
@@ -82,7 +90,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               });
             },
           ),
-          const Divider(height: 32),
+          32.vSpace,
           const Text(
             'Appearance',
             style: TextStyle(
@@ -90,7 +98,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               fontSize: 18,
             ),
           ),
-          const SizedBox(height: 10),
+          10.vSpace,
           SwitchListTile(
             secondary: const Icon(Icons.dark_mode),
             title: const Text('Dark Mode'),
@@ -101,7 +109,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               });
             },
           ),
-          const Divider(height: 32),
+          32.vSpace,
           const Text(
             'About',
             style: TextStyle(
@@ -109,7 +117,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               fontSize: 18,
             ),
           ),
-          const SizedBox(height: 10),
+          10.vSpace,
           ListTile(
             leading: const Icon(Icons.info_outline),
             title: const Text('About App'),
@@ -118,12 +126,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 context: context,
                 applicationName: 'Kolepto',
                 applicationVersion: '1.0.0',
-                applicationLegalese: '© 2024 Kolepto',
+                applicationLegalese: '© 2025 Kolepto',
                 children: [
                   const Padding(
                     padding: EdgeInsets.only(top: 16.0),
                     child: Text(
-                        'Kolepto helps you manage your collections easily.'),
+                        'Kolepto helps you manage your contributions easily.'),
                   ),
                 ],
               );
@@ -135,20 +143,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
             onTap: () {
               // Open privacy policy
             },
-          ),
-          const SizedBox(height: 30),
-          Center(
-            child: ElevatedButton.icon(
-              icon: const Icon(Icons.logout),
-              label: const Text('Log Out'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red,
-                foregroundColor: Colors.white,
-              ),
-              onPressed: () {
-                // Handle logout
-              },
-            ),
           ),
         ],
       ),

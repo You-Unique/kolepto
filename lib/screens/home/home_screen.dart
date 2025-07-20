@@ -402,7 +402,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       20.vSpace,
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           HoveringContainer(
                             width: 150,
@@ -414,7 +414,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             textColor: Colors.white,
                             iconColor: Colors.white,
                             onTap: () {
-                              // Add your create event logic here
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return SigninScreen();
+                                  },
+                                ),
+                              );
                             },
                           ),
                           HoveringContainer(
@@ -427,7 +433,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             textColor: Colors.white,
                             iconColor: Colors.white,
                             onTap: () {
-                              // Add your share link logic here
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return SigninScreen();
+                                  },
+                                ),
+                              );
                             },
                           ),
                           HoveringContainer(
@@ -440,7 +452,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             textColor: Colors.white,
                             iconColor: Colors.white,
                             onTap: () {
-                              // Add your collect payments logic here
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return SigninScreen();
+                                  },
+                                ),
+                              );
                             },
                           ),
                         ],

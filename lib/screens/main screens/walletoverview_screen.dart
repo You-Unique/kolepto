@@ -12,63 +12,70 @@ class _WalletoverviewScreenState extends State<WalletoverviewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 20,
+      appBar: AppBar(
+        title: Text(
+          'Wallet Overview',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+            color: Colors.green[900],
+          ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Wallet Overview',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 20,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              20.vSpace,
+              const Text(
+                'Wallet Overview',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                ),
               ),
-            ),
-            20.vSpace,
-            const Text(
-              'Wallet Overview',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
+              5.vSpace,
+              const Text(
+                'Manage and track your funds effectively.',
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 14,
+                  color: Colors.grey,
+                ),
               ),
-            ),
-            5.vSpace,
-            const Text(
-              'Manage and track your funds effectively.',
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: 14,
-                color: Colors.grey,
-              ),
-            ),
-            30.vSpace,
-            const WalletOverviewContainer(
-                title: 'Collection Earnings',
-                subtitle1: 'COLLECTION',
-                subtitle2: 'AMOUNT',
-                subtitle3: 'PARTICIPANTS',
-                subtitle4: 'EARNINGS',
-                subtitle5: 'TOTAL EARNINGS'),
-            30.vSpace,
-            const WalletOverviewContainer(
-                title: 'Wallet Balance',
-                subtitle1: 'CURRENCY',
-                subtitle2: 'BALANCE',
-                subtitle3: 'AVAILABLE',
-                subtitle4: 'PENDING',
-                subtitle5: 'TOTAL'),
-            30.vSpace,
-            const WalletOverviewContainer(
-                title: 'Withdrawal History',
-                subtitle1: 'DATE',
-                subtitle2: 'COLLECTION',
-                subtitle3: 'DESCRIPTION',
-                subtitle4: 'AMOUNT',
-                subtitle5: 'STATUS'),
-          ],
+              30.vSpace,
+              const WalletOverviewContainer(
+                  title: 'Collection Earnings',
+                  subtitle1: 'COLLECTION',
+                  subtitle2: 'AMOUNT',
+                  subtitle3: 'PARTICIPANTS',
+                  subtitle4: 'EARNINGS',
+                  subtitle5: 'TOTAL EARNINGS'),
+              30.vSpace,
+              const WalletOverviewContainer(
+                  title: 'Wallet Balance',
+                  subtitle1: 'CURRENCY',
+                  subtitle2: 'BALANCE',
+                  subtitle3: 'AVAILABLE',
+                  subtitle4: 'PENDING',
+                  subtitle5: 'TOTAL'),
+              30.vSpace,
+              const WalletOverviewContainer(
+                  title: 'Withdrawal History',
+                  subtitle1: 'DATE',
+                  subtitle2: 'COLLECTION',
+                  subtitle3: 'DESCRIPTION',
+                  subtitle4: 'AMOUNT',
+                  subtitle5: 'STATUS'),
+            ],
+          ),
         ),
       ),
     );

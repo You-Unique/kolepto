@@ -1,11 +1,9 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:kolepto/screens/home/home_screen.dart';
 import 'package:kolepto/screens/shared_utils/extension.dart';
 import 'package:kolepto/screens/shared_utils/hovering_container.dart';
 import 'package:kolepto/screens/shared_utils/input_field.dart';
-import 'package:kolepto/screens/signup/signup_screen.dart';
 
 class CreatecolectionsScreen extends StatefulWidget {
   const CreatecolectionsScreen({super.key});
@@ -51,6 +49,18 @@ class _CreatecolectionsScreenState extends State<CreatecolectionsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Create Collection',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+            color: Colors.green[900],
+          ),
+        ),
+        elevation: 0,
+        automaticallyImplyLeading: false,
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -60,13 +70,6 @@ class _CreatecolectionsScreenState extends State<CreatecolectionsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Create Collection',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
-              ),
               20.vSpace,
               const Text(
                 'Create a New Collection',
@@ -364,27 +367,11 @@ class _CreatecolectionsScreenState extends State<CreatecolectionsScreen> {
                             exit_color: Colors.green[900],
                             textColor: Colors.white,
                             iconColor: Colors.white,
-                            onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return const HomeScreen();
-                                  },
-                                ),
-                              );
-                            }, // No act
+                            onTap: () {}, // No act
                           ),
                           20.hSpace,
                           HoveringContainer(
-                            onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return const SignupScreen();
-                                  },
-                                ),
-                              );
-                            },
+                            onTap: () {},
                             width: 300,
                             height: 40,
                             text: 'Cancel',

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kolepto/screens/home/home_screen.dart';
 import 'package:kolepto/screens/shared_utils/extension.dart';
 import 'package:kolepto/screens/shared_utils/hovering_container.dart';
 import 'package:kolepto/screens/shared_utils/input_field.dart';
-import 'package:kolepto/screens/signup/signup_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -13,31 +11,17 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  bool createCollectionText = false;
+  final TextEditingController _name = TextEditingController();
 
-  bool previewCollectionText = false;
+  final TextEditingController _email = TextEditingController();
 
-  bool createContainer = false;
-
-  final TextEditingController _title = TextEditingController();
-
-  final TextEditingController _description = TextEditingController();
-
-  final TextEditingController _amount = TextEditingController();
-
-  final TextEditingController _deadline = TextEditingController();
+  final TextEditingController _phoneNumber = TextEditingController();
   // Add this controller
-  bool passwordobscure = false;
+  bool borderColorName = false;
 
-  bool confirmpasswordobscure = false;
+  bool borderColorEmail = false;
 
-  bool borderColorTitle = false;
-
-  bool borderColorDescription = false;
-
-  bool borderColorAmount = false;
-
-  bool borderColorDeadline = false;
+  bool borderColorphoneNumber = false;
 
   bool isHovering = false;
 
@@ -51,15 +35,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   void dispose() {
-    _title.dispose();
-    _description.dispose();
-    _amount.dispose();
+    _name.dispose();
+    _email.dispose();
+    _phoneNumber.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Profile',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+            color: Colors.green[900],
+          ),
+        ),
+        elevation: 0,
+        automaticallyImplyLeading: false,
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
@@ -179,13 +175,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             5.vSpace,
                             MouseRegion(
                               onEnter: (_) =>
-                                  setState(() => borderColorTitle = true),
+                                  setState(() => borderColorName = true),
                               onExit: (_) =>
-                                  setState(() => borderColorTitle = false),
+                                  setState(() => borderColorName = false),
                               child: InputField(
-                                textEditingController: _title,
-                                hint: 'David Robinson',
-                                bordercolor: borderColorTitle
+                                readOnly: toggleContainer ? false : true,
+                                textEditingController: _name,
+                                hint: toggleContainer
+                                    ? _name.text.toString()
+                                    : 'David Robinson',
+                                hintsize: 14,
+                                bordercolor: borderColorName
                                     ? Colors.green
                                     : Colors.transparent,
                               ),
@@ -201,13 +201,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             5.vSpace,
                             MouseRegion(
                               onEnter: (_) =>
-                                  setState(() => borderColorDescription = true),
-                              onExit: (_) => setState(
-                                  () => borderColorDescription = false),
+                                  setState(() => borderColorEmail = true),
+                              onExit: (_) =>
+                                  setState(() => borderColorEmail = false),
                               child: InputField(
-                                textEditingController: _description,
-                                hint: 'davidrob@example.com',
-                                bordercolor: borderColorDescription
+                                readOnly: toggleContainer ? false : true,
+                                textEditingController: _email,
+                                hintsize: 14,
+                                hint: toggleContainer
+                                    ? _email.text.toString()
+                                    : 'davidrob@example.com',
+                                bordercolor: borderColorEmail
                                     ? Colors.green
                                     : Colors.transparent,
                               ),
@@ -223,13 +227,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             5.vSpace,
                             MouseRegion(
                               onEnter: (_) =>
-                                  setState(() => borderColorDeadline = true),
-                              onExit: (_) =>
-                                  setState(() => borderColorDeadline = false),
+                                  setState(() => borderColorphoneNumber = true),
+                              onExit: (_) => setState(
+                                  () => borderColorphoneNumber = false),
                               child: InputField(
-                                textEditingController: _deadline,
-                                hint: 'e.g. +234 123 4567',
-                                bordercolor: borderColorDeadline
+                                readOnly: toggleContainer ? false : true,
+                                textEditingController: _phoneNumber,
+                                hintsize: 14,
+                                hint: toggleContainer
+                                    ? _phoneNumber.text.toString()
+                                    : 'e.g. +234 123 4567',
+                                bordercolor: borderColorphoneNumber
                                     ? Colors.green
                                     : Colors.transparent,
                               ),
@@ -241,41 +249,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 HoveringContainer(
                                   width: 200,
                                   height: 40,
-                                  text: 'Edit Profile',
-                                  icon: Icons
-                                      .create, // Changed to a more explicit sign-up icon
+                                  text: toggleContainer
+                                      ? 'Save Changes'
+                                      : 'Edit Profile',
+                                  icon: toggleContainer
+                                      ? Icons.done
+                                      : Icons
+                                          .create, // Changed to a more explicit sign-up icon
                                   entry_color: Colors.green[700],
                                   exit_color: Colors.green[900],
                                   textColor: Colors.white,
                                   iconColor: Colors.white,
                                   onTap: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) {
-                                          return const HomeScreen();
-                                        },
-                                      ),
-                                    );
+                                    toggleCounter();
                                   }, // No act
                                 ),
                                 20.hSpace,
-                                HoveringContainer(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) {
-                                          return const SignupScreen();
-                                        },
-                                      ),
-                                    );
-                                  },
-                                  width: 200,
-                                  height: 40,
-                                  text: 'Cancel',
-                                  icon: Icons
-                                      .cancel_outlined, // Changed to a more explicit enter/sign-in icon
-                                  entry_color: Colors.orangeAccent,
-                                  exit_color: Colors.transparent,
+                                Visibility(
+                                  visible: toggleContainer,
+                                  child: HoveringContainer(
+                                    onTap: () {
+                                      toggleCounter();
+                                    },
+                                    width: 200,
+                                    height: 40,
+                                    text: 'Cancel',
+                                    icon: Icons
+                                        .cancel_outlined, // Changed to a more explicit enter/sign-in icon
+                                    entry_color: Colors.orangeAccent,
+                                    exit_color: Colors.transparent,
+                                  ),
                                 ),
                               ],
                             ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kolepto/provider/navigation_state.dart';
-import 'package:kolepto/screens/main%20screens/generator_page.dart';
+import 'package:kolepto/screens/home/home_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -21,9 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Kolepto',
       theme: ThemeData(),
-      home: const GeneratorPage(
-        selectedIndex: 0,
-      ),
+      home: const HomeScreen(),
     );
   }
 }
